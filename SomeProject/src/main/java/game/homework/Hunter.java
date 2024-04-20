@@ -1,6 +1,6 @@
 package game.homework;
 
-public class Hunter extends GameCharacter {
+public class Hunter extends GameField {
     private int countOfBullets;
 
     public Hunter() {
@@ -22,15 +22,13 @@ public class Hunter extends GameCharacter {
     public void shootAnAnimal(Animal animal) {
         if (countOfBullets == 0) {
             System.out.println("Недостаточно патронов!");
-        }
-        if (animal.getHealth() - 10 <= 0) {
-            animal.setAlive(false);
-            System.out.println("Животное убито!");
-            countOfBullets--;
         } else {
-            animal.setHealth(animal.getHealth() - 10);
-            System.out.println("Животное ранено!");
-            countOfBullets--;
+            animal.setHealth(animal.getHealth() - 15);
+            if (animal.isAlive()) {
+                System.out.println("The animal is injured! It's health = " + animal.getHealth());
+            } else {
+                System.out.println("The animal is died!");
+            }
         }
     }
 

@@ -1,13 +1,19 @@
 package game.homework;
 
-public class Mouse extends Herbivore {
+public class Mouse extends Animal {
     public Mouse() {
-        super(10, true);
+        super();
     }
 
     @Override
-    public void eat() {
-        setFullness(true);
-        System.out.println("Мышка покушала!");
+    public void eat(GameField food) {
+        if (getFullness() >= 100) {
+            System.out.println("Mouse is already full!");
+        }
+        if (food instanceof ForestFruit) {
+            ((ForestFruit) food).setState(false);
+            setFullness(getFullness() + 50);
+            System.out.println("Mouse ate some fruit");
+        }
     }
 }

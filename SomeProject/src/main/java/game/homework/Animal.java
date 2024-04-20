@@ -1,37 +1,21 @@
 package game.homework;
 
-public abstract class Animal extends GameCharacter {
-    private boolean fullness;
+public abstract class Animal extends GameField {
+    private int fullness;
     private int health;
-    private int speed;
     private boolean isAlive;
 
     public Animal() {
-    }
-
-    public Animal(int speed, boolean isAlive) {
-        this.fullness = false;
+        this.fullness = 0;
         this.health = 100;
-        this.speed = speed;
-        this.isAlive = isAlive;
+        this.isAlive = true;
     }
 
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-        if (!alive) {
-            setHealth(0);
-        }
-    }
-
-    public boolean getFullness() {
+    public int getFullness() {
         return fullness;
     }
 
-    public void setFullness(boolean fullness) {
+    public void setFullness(int fullness) {
         this.fullness = fullness;
     }
 
@@ -41,22 +25,29 @@ public abstract class Animal extends GameCharacter {
 
     public void setHealth(int health) {
         this.health = health;
+        if (health <= 0) {
+            isAlive = false;
+        }
     }
 
-    public int getSpeed() {
-        return speed;
+    public boolean isAlive() {
+        return isAlive;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+        if (!alive) {
+            this.health = 0;
+        }
     }
+
+    public abstract void eat(GameField food);
 
     @Override
     public String toString() {
         return "Animal{" +
                 "fullness=" + fullness +
                 ", health=" + health +
-                ", speed=" + speed +
                 ", isAlive=" + isAlive +
                 '}';
     }

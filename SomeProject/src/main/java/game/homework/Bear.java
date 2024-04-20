@@ -1,16 +1,25 @@
 package game.homework;
 
-public class Bear extends Predator {
+public class Bear extends Animal {
     public Bear() {
-        super(15, true);
+        super();
     }
 
-    public void eatAnotherAnimal(Animal animal) {
-        if (animal instanceof Bear) {
-            System.out.println("Медведь медведя не тронет!");
+    @Override
+    public void eat(GameField food) {
+        if (getFullness() >= 100) {
+            System.out.println("Bear is already full!");
         }
-        setFullness(true);
-        animal.setAlive(false);
-        System.out.println("Медведь съел другое животное!");
+        if (food instanceof ForestFruit) {
+            ((ForestFruit) food).setState(false);
+            setFullness(getFullness() + 10);
+            System.out.println("Bear ate some fruit!");
+        }
+
+        if (food instanceof Mouse) {
+            ((Mouse) food).setAlive(false);
+            setFullness(getFullness() + 30);
+            System.out.println("Bear ate some mouse");
+        }
     }
 }

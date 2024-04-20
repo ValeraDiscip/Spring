@@ -1,13 +1,19 @@
 package game.homework;
 
-public class Hare extends Herbivore {
+public class Hare extends Animal {
     public Hare() {
-        super(20, true);
+        super();
     }
 
     @Override
-    public void eat() {
-        setFullness(true);
-        System.out.println("Заяц покушал!");
+    public void eat(GameField food) {
+        if (getFullness() >= 100) {
+            System.out.println("Hare is already full!");
+        }
+        if (food instanceof ForestFruit) {
+            ((ForestFruit) food).setState(false);
+            setFullness(getFullness() + 25);
+            System.out.println("Hare ate some fruit");
+        }
     }
 }

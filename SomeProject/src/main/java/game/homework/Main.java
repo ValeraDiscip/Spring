@@ -2,26 +2,29 @@ package game.homework;
 
 public class Main {
     public static void main(String[] args) {
-        Hunter hunter = new Hunter(10);
-        Mouse mouse = new Mouse();
-        Hare hare = new Hare();
+        //Проверяю свой код...
         Bear bear = new Bear();
         Fox fox = new Fox();
+        Hare hare = new Hare();
+        Mouse mouse = new Mouse();
 
-        //А это типа карта на которой находятся все персонажи....Сделал так как понял!
-        GameCharacter[] gameField = {hunter, mouse, hare, bear, fox};
-        for (GameCharacter gameCharacter : gameField) {
-            System.out.println(gameCharacter);
-        }
+        Hunter hunter = new Hunter();
+        hunter.addBullets(10);
+
+        ForestFruit fruit1 = new ForestFruit();
+        ForestFruit fruit2 = new ForestFruit();
+        ForestFruit fruit3 = new ForestFruit();
+
+        bear.eat(mouse);
 
 
-        bear.eatAnotherAnimal(fox);
-        System.out.println(fox.getHealth());
+        hare.eat(fruit1);
 
         hunter.shootAnAnimal(bear);
         hunter.shootAnAnimal(bear);
         hunter.shootAnAnimal(bear);
-
-        System.out.println(bear.getHealth());
+        hunter.shootAnAnimal(bear);
+        //Можно конечно еще добавить статическое поле имя чтобы печаталось понятнее и красивее.
+        GameField[] gameField = {hunter, bear, fox, hare, new Mouse(), fruit1, fruit2, fruit3};
     }
 }
